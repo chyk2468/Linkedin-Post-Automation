@@ -1,0 +1,27 @@
+# Secrets & Credentials
+config/.env
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.venv/
+.env/
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+
+# Local Data & Outputs (Keep the folders, ignore the files)
+data/outputs/*
+!data/outputs/.gitkeep
+logs/*.log
+outputs/
+
+# OS files
+.DS_Store
+Thumbs.db
