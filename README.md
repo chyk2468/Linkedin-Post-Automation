@@ -1,61 +1,71 @@
-# LinkedIn AI Auto-Poster (Professional Edition)
+# 🤖 My Robot Storybook Maker (LinkedIn AI Poster)
 
-An automated, modular system that researches, generates, and posts AI-related content to LinkedIn. (Scheduled automation disabled).
+Hi there! This is a magic machine that helps you share cool stories about robots (AI) with your friends on LinkedIn. 
 
-## 📁 Project Structure
-```text
-linkdin/
-├── config/
-│   ├── .env                # API keys and credentials
-│   └── config.py           # Centralized configuration and templates
-├── core/
-│   ├── scheduler.py        # 🚀 Manual Trigger / Run-once entry
-│   ├── automation.py       # 🚀 Pipeline orchestrator
-│   ├── fetcher.py          # 🔍 News & Research fetcher
-│   ├── summarizer.py       # ✍️ AI Content generator (Groq)
-│   ├── formatter.py        # 📄 Content styling & formatting
-│   ├── image_gen.py        # 🎨 AI Image generator (Pollinations)
-│   ├── publisher.py        # 🚀 LinkedIn API integration
-│   └── logger.py           # 📝 Structured logging & duplicate protection
-├── data/
-│   ├── outputs/            # Generated images
-│   └── post_log.jsonl      # Structured post history
-├── logs/
-│   ├── success.log         # Detailed success history
-│   └── error.log           # Debugging and failure logs
-├── README.md               # You are here
-└── requirements.txt        # Python dependencies
-```
+Imagine you have a robot helper that:
+1. 🕵️ **The Scout (Serper):** Looks around the internet to see what robots are doing today.
+2. ✍️ **The Writer (Groq):** Writes a fun story about what it found.
+3. 📸 **The Photographer (Pexels):** Picks a pretty picture to go with the story.
+4. 📮 **The Mailman (LinkedIn):** Puts the story on your LinkedIn wall so everyone can see!
 
-## 📅 Daily Topics
-- **Mon**: AI Tech & Tools
-- **Tue**: AI Healthcare
-- **Wed**: AI Finance
-- **Thu**: Business Automation
-- **Fri**: Research & Innovation
-- **Sat**: Personal Health & Wearables
-- **Sun**: Weekly Trends Recap
+---
 
-## 🛠️ Setup & Usage
-1. **Install Dependencies**:
+## 🔑 Magic Keys (What you need)
+
+To make the robot work, you need 5 "Magic Keys". These are special codes (API keys) that you put in a secret file called `.env` inside the `config` folder.
+
+1. **The Brain Key (Groq API Key):** 
+   - *What it does:* Helps the robot think and write stories.
+   - *Where to get it:* [Groq Console](https://console.groq.com/)
+
+2. **The Scout Key (Serper API Key):** 
+   - *What it does:* Helps the robot search the big internet for news.
+   - *Where to get it:* [Serper.dev](https://serper.dev/)
+
+3. **The Camera Key (Pexels API Key):** 
+   - *What it does:* Helps the robot find beautiful pictures for your posts.
+   - *Where to get it:* [Pexels API](https://www.pexels.com/api/)
+
+4. **The Post Office Key (LinkedIn Access Token):** 
+   - *What it does:* This is the key to your LinkedIn house so the robot can post for you.
+   - *Where to get it:* [LinkedIn Developers Portal](https://www.linkedin.com/developers/)
+
+5. **The ID Card (LinkedIn Person URN):** 
+   - *What it does:* This tells LinkedIn exactly which person is posting (it's like your digital name tag).
+   - *Where to get it:* Found via the LinkedIn API "me" endpoint.
+
+---
+
+## 🚀 How to wake up the robot
+
+1. **Give it Tools:** Open your black command box and type:
    ```bash
-   python -m pip install -r requirements.txt
+   pip install -r requirements.txt
    ```
-2. **Configure Credentials**:
-   Edit `config/.env` with your API keys.
-3. **Manual Trigger**:
+2. **Give it the Keys:** Put your Magic Keys into `config/.env`.
+3. **Press Start:** Type this to send a post right now:
    ```bash
    python core/scheduler.py
    ```
-4. **Advanced Manual Trigger**:
-   - Preview today's post (Dry Run): `python core/automation.py --test`
-   - Trigger a specific day (0=Mon, 6=Sun): `python core/automation.py 1`
-   - Force immediate post: `python core/automation.py`
 
-## 🛡️ Key Features
-- **Pro SaaS Dashboard**: Completely revamped dark-themed UI with KPI metrics and live side-by-side preview.
-- **Pexels Integration**: High-quality professional stock images automatically sourced with required attribution.
-- **Modular Design**: Each stage is isolated for easy maintenance.
-- **Duplicate Protection**: Uses topic hashes and SQLite tracking to avoid reposting.
-- **Failure Handling**: 3x retries on LinkedIn API failures with automated error logging.
-- **Structured Logs**: All actions are logged in JSON for future analytics.
+---
+
+## 📅 What does the robot talk about?
+The robot has a schedule so it never gets bored:
+- **Monday:** 🛠️ **Cool Tools** (New robot toys)
+- **Tuesday:** 🏥 **Doctors & Robots** (How AI helps sick people)
+- **Wednesday:** 💰 **Money & Robots** (Banks and AI)
+- **Thursday:** 🏢 **Work & Robots** (Helping people at their jobs)
+- **Friday:** 🧪 **New Science** (Advanced robot research)
+- **Saturday:** ⌚ **Watches & Health** (AI in your watch and fitness)
+- **Sunday:** 📰 **Weekly News** (A big recap of the whole week)
+
+---
+
+### 👨‍💼 For Grown-ups (Technical Details)
+- **Language:** Python 3.10+
+- **Main Brain:** Groq (Llama 3 70B)
+- **Search:** Serper.dev API
+- **Images:** Pexels API (Stock photos)
+- **History:** Stores posts in `data/history.db` so it doesn't repeat itself.
+- **Logs:** If the robot gets a "tummy ache" (error), check the `logs/` folder!
