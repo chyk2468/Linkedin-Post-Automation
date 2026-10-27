@@ -1,71 +1,45 @@
-# 🤖 My Robot Storybook Maker (LinkedIn AI Poster)
+# LinkedIn Post Automation
 
-Hi there! This is a magic machine that helps you share cool stories about robots (AI) with your friends on LinkedIn. 
+A Streamlit workflow that helps prepare LinkedIn posts from topic ideas. The automation pipeline combines web research, draft generation, image selection, and a local post history.
 
-Imagine you have a robot helper that:
-1. 🕵️ **The Scout (Serper):** Looks around the internet to see what robots are doing today.
-2. ✍️ **The Writer (Groq):** Writes a fun story about what it found.
-3. 📸 **The Photographer (Pexels):** Picks a pretty picture to go with the story.
-4. 📮 **The Mailman (LinkedIn):** Puts the story on your LinkedIn wall so everyone can see!
+**Stack:** Python, Streamlit, Groq, Serper, Pexels, LinkedIn integration, SQLite/JSON history
 
----
+![LinkedIn Post Automation workflow](docs/readme-architecture.svg)
 
-## 🔑 Magic Keys (What you need)
+## Workflow
 
-To make the robot work, you need 5 "Magic Keys". These are special codes (API keys) that you put in a secret file called `.env` inside the `config` folder.
+1. Select a topic from the configured topic list.
+2. Search for context using Serper.
+3. Draft the post with Groq and select an image through Pexels.
+4. Review and publish through the configured LinkedIn integration.
+5. Record history and logs so previous runs can be inspected.
 
-1. **The Brain Key (Groq API Key):** 
-   - *What it does:* Helps the robot think and write stories.
-   - *Where to get it:* [Groq Console](https://console.groq.com/)
+## Code map
 
-2. **The Scout Key (Serper API Key):** 
-   - *What it does:* Helps the robot search the big internet for news.
-   - *Where to get it:* [Serper.dev](https://serper.dev/)
+- `app.py`: Streamlit interface and post history
+- `core/automation.py`: automation pipeline
+- `core/`: generation and integration logic
+- `config/`: topic and path configuration
+- `data/`: local history data
+- `requirements.txt`: Python dependencies
 
-3. **The Camera Key (Pexels API Key):** 
-   - *What it does:* Helps the robot find beautiful pictures for your posts.
-   - *Where to get it:* [Pexels API](https://www.pexels.com/api/)
+## Run locally
 
-4. **The Post Office Key (LinkedIn Access Token):** 
-   - *What it does:* This is the key to your LinkedIn house so the robot can post for you.
-   - *Where to get it:* [LinkedIn Developers Portal](https://www.linkedin.com/developers/)
+```bash
+git clone https://github.com/chyk2468/Linkedin-Post-Automation.git
+cd Linkedin-Post-Automation
+python -m venv .venv
+```
 
-5. **The ID Card (LinkedIn Person URN):** 
-   - *What it does:* This tells LinkedIn exactly which person is posting (it's like your digital name tag).
-   - *Where to get it:* Found via the LinkedIn API "me" endpoint.
+Activate the environment and install dependencies:
 
----
+```bash
+pip install -r requirements.txt
+streamlit run app.py
+```
 
-## 🚀 How to wake up the robot
+Configure credentials for the integrations in the configuration format expected by this project. Keep tokens outside version control.
 
-1. **Give it Tools:** Open your black command box and type:
-   ```bash
-   pip install -r requirements.txt
-   ```
-2. **Give it the Keys:** Put your Magic Keys into `config/.env`.
-3. **Press Start:** Type this to send a post right now:
-   ```bash
-   python core/scheduler.py
-   ```
+## Publish responsibly
 
----
-
-## 📅 What does the robot talk about?
-The robot has a schedule so it never gets bored:
-- **Monday:** 🛠️ **Cool Tools** (New robot toys)
-- **Tuesday:** 🏥 **Doctors & Robots** (How AI helps sick people)
-- **Wednesday:** 💰 **Money & Robots** (Banks and AI)
-- **Thursday:** 🏢 **Work & Robots** (Helping people at their jobs)
-- **Friday:** 🧪 **New Science** (Advanced robot research)
-- **Saturday:** ⌚ **Watches & Health** (AI in your watch and fitness)
-- **Sunday:** 📰 **Weekly News** (A big recap of the whole week)
-
----
-
-### 👨‍💼 For Grown-ups (Technical Details)
-- **Language:** Python 3.10+
-- **Main Brain:** Groq (Llama 3 70B)
-- **Search:** Serper.dev API
-- **Images:** Pexels API (Stock photos)
-- **History:** Stores posts in `data/history.db` so it doesn't repeat itself.
-- **Logs:** If the robot gets a "tummy ache" (error), check the `logs/` folder!
+Review the final copy and source claims, confirm the selected image is permitted for use, and verify the destination account before publishing. Treat generated content as a draft, not as independently verified reporting.
